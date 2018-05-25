@@ -203,10 +203,10 @@ PapersSys.prototype = {
 			type:"papers_price",
             papers : ""
         };
-        var hash = ret_data.hash;
-        var from = ret_data.from;
-        var to = ret_data.to;
-        var value = new BigNumber(ret_data.value);
+        // var hash = ret_data.hash;
+        // var from = ret_data.from;
+        // var to = ret_data.to;
+        // var value = new BigNumber(ret_data.value);
         
         if (key == "") {
             result.success = false;
@@ -215,15 +215,15 @@ PapersSys.prototype = {
         var papers = this.papers_list.get(key);
 
         if (papers) {
-            if (hash == "" || from != Blockchain.transaction.from || to != papers.from) {
-                result.success = false;
-                return result;
-            }
+            // if (hash == "" || from != Blockchain.transaction.from || to != papers.from) {
+            //     result.success = false;
+            //     return result;
+            // }
     
-            if (value < papers.price_num) {
-                result.success = false;
-                return result;
-            }
+            // if (value < papers.price_num) {
+            //     result.success = false;
+            //     return result;
+            // }
             result.success = true;
             result.papers = papers;
             return result;

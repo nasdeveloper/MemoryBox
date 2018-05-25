@@ -5,7 +5,7 @@
 var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
 var nebPay = new NebPay();
 
-var dappAddress = "n21MwJsNYUFTJX3gRinegwXeR3xgVw2gXin";
+var dappAddress = "n1rSyoBAHVZWV56UqTX5q8XsjMktAp6h7xd";
 var PapersShow = function() {
 	this.picTrans = new PictureSaveAndRead();
     this.picTrans.init();
@@ -207,28 +207,34 @@ function funcIntervalPay() {
     nebPay.queryPayInfo(serialNumPay)   //search transaction result from server (result upload to server by app)
         .then(function (resp) {
             var respObject = JSON.parse(resp);
-            if (respObject.data.status == 1) {
-                // 查询
-                var req_args = [];
-                req_args.push(key_pay);
-                req_args.push(respObject.data);
-                window.postMessage({
-                    "target": "contentscript",
-                    "data":{
-                        "to" : dappAddress,
-                        "value" : "0",
-                        "contract" : {
-                            "function" : "query_papers_by_key_with_price",
-                            "args" : JSON.stringify(req_args)
-                        }
-                    },
-                    "method": "neb_call"
-                }, "*");
-            }
-            if (respObject.data.status == 1 || respObject.data.status == 0) {
 
-                window.clearInterval(intervalPay);
-            }
+            // 查询
+            var req_args = [];
+            req_args.push(key_pay);
+            req_args.push(respObject.data);
+            window.postMessage({
+                "target": "contentscript",
+                "data":{
+                    "to" : dappAddress,
+                    "value" : "0",
+                    "contract" : {
+                        "function" : "query_papers_by_key_with_price",
+                        "args" : JSON.stringify(req_args)
+                    }
+                },
+                "method": "neb_call"
+            }, "*");
+
+            window.clearInterval(intervalPay);
+
+            // console.log("jadonsun-" + resp);
+            // if (respObject.data.status == 1) {
+                
+            // }
+            // if (respObject.data.status == 1 || respObject.data.status == 0) {
+
+                
+            // }
             
         })
         .catch(function (err) {
@@ -251,7 +257,7 @@ function payForShow(price_num, pay_to) {
 
     intervalPay = setInterval(function () {
         funcIntervalPay();
-    }, 10000);
+    }, 15000);
 }
 
 //隐藏详情信息

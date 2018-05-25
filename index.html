@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>记忆保险柜</title>
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css" type="text/css">
+<!-- Dropdownhover CSS -->
+<link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap-dropdownhover.min.css" type="text/css">
+<!-- fonts awesome -->
+<link rel="stylesheet" href="lib/font/css/font-awesome.min.css" type="text/css">
+<!-- Plugin CSS -->
+<link rel="stylesheet" href="lib/animation/animate.min.css" type="text/css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/style_index.css" type="text/css">
+<link rel="stylesheet" href="css/commet_list.css" type="text/css">
+<!-- Owl Carousel Assets -->
+<link href="lib/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link href="lib/owl-carousel/owl.theme.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link href="css/component.css" rel="stylesheet">
+<link href="css/style_loading.css" rel="stylesheet">
+<style type="text/css">
+.navbar {
+	margin-bottom: 14px;
+}
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover {
+	background-color: transparent;
+	color: #F2552C;
+}
+.navbar {
+    min-height: 100px;
+    margin-bottom: 0px;
+}
+</style>
+</head>
+
+<body>
+ 
+
+<!-- Preloader -->
+<div id="preloader">
+	<div id="loading">
+	</div>
+</div>
+<header>
+	<!-- top-menu -->
+	<div class="top-menu">
+		<!-- mainNav -->
+		<div id="mainNav" class="navbar-fixed-top">
+			<div class="container">
+				<div class="row">
+					<nav class="navbar navbar-inverse navbar-default">
+
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"><img src="img/logo.png" alt="logo" width="350"></a>
+						</div>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1" data-hover="dropdown" data-animations="fadeIn fadeInLeft fadeInUp fadeInRight">
+							<ul class="nav navbar-nav" style="    margin-top: 40px;margin-right: 15px;">
+								<li><a href="index.html" class="index_a" >查看保险柜</a></li>
+								<li><a href="input_papers.html" class="index_a" >添加保险柜</a></li>
+							</ul>
+							<!-- /.navbar-collapse -->
+						</div>
+
+					</nav>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- /mainNav -->
+	</div>
+	<!-- /top-menu -->
+
+</header>
+<section class="for-box">
+	<div class="container" style="margin-bottom:20px;">
+			<span class="input-group-addon btn btn-primary" id="search_myself" 
+			      style="height: 50px;font-size: 18px;border-radius: 8px;">我的记忆保险柜</span>	
+	</div>
+	<div class="container">
+		<div class="input-group">
+			<input type="text" class="form-control input-lg" placeholder="请输入待查询用户星云地址" id="search_key_input">
+			<span class="input-group-addon btn btn-primary" id="commit_search">查询</span>
+		</div>
+	</div>
+</section>
+<section class="for-box" id="loader_paper">
+	<div class="loader" >
+		<svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+		</svg>
+	</div>
+</section>
+
+<section class="for-box" id="section_papers" style="display:none;">
+	<!-- .for-box -->
+	<div class="container">
+		<div class="tittle">
+			<h2>
+				用 户 记 忆 保 险 柜 列 表
+			</h2>
+		</div>
+	</div>
+
+	<div class="container" id="papers_list">
+	</div>
+	<div class="alert alert-success" role="alert" align="center" id="papers_warning">
+		<strong>抱歉 </strong>暂时没有该用户的记忆信息
+	</div>
+	<!-- /.for-box -->
+</section>
+<div id="model_part" style="width:1000px; height:500px; padding-left:450px;display:none" >
+	<div class="md-modal md-effect-1" id="modal-1">
+		<div class="md-content">
+		  <h3>保险柜秘密内容 </h3>
+		  <img class="close_a" width="25px" height="25px" onclick="closeDetail()" />
+		  <div class="login5left">
+			<ul>
+			  <li><strong>星云地址：</strong> <p class="li_p" id="papers_id"></p></li>
+			  <li><strong>姓名：</strong><p class="li_p" style="display:inline-block;" id="papers_name"></p></li>
+			  <li><strong>性别：</strong><p class="li_p" id="papers_sex"></p></li>
+			  <li><strong>保险柜类别：</strong><p class="li_p" id="papers_type"></p></li>
+			  <li><strong>保险柜标题：</strong><p class="li_p" id="papers_title"></p></li>
+			  <li><strong>保险柜详情：</strong><p class="li_p_1" id="papers_detail"></p></li>
+			  <li><strong>记录时间：</strong><p class="li_p" id="papers_time"></p></li>
+			</ul>
+			
+		  </div>
+		  <div class="login5right" >
+				<div  align="center">
+					<img id="papers_image" src="img\\staff.jpg" style="min-width:300px;max-width:319px;max-height:325px;" alt="instructor-img1">
+				</div>
+		  </div>
+		  <div style=" float: right; height:  35px;width:  100%;padding:0 30px 0 0;">
+			<a class="btn btn-primary btn-sm" onclick="closeDetail()" data-modal="modal-1" style="float:right;margin-right:-25px;">关闭</a>
+		  </div>
+		</div>
+	</div>
+	<div class="md-overlay"></div>
+</div>
+
+<div id="model_no_pic" style="width:1000px; height:500px; padding-left:450px;display:none" >
+		<div class="md-modal md-effect-1" id="modal-2">
+			<div class="md-content">
+			  <h3>保险柜秘密内容 </h3>
+			  <img class="close_a" width="25px" height="25px" onclick="closeDetail_2()" />
+			  <div class="loginall">
+				<ul>
+				  <li><strong>星云地址：</strong> <p class="li_p" id="papers_id_nopic"></p></li>
+				  <li><strong>姓名：</strong><p class="li_p" style="display:inline-block;" id="papers_name_nopic"></p></li>
+				  <li><strong>性别：</strong><p class="li_p" id="papers_sex_nopic"></p></li>
+				  <li><strong>保险柜类别：</strong><p class="li_p" id="papers_type_nopic"></p></li>
+				  <li><strong>保险柜标题：</strong><p class="li_p" id="papers_title_nopic"></p></li>
+				  <li><strong>保险柜详情：</strong><p class="li_p_1" id="papers_detail_nopic"></p></li>
+				  <li><strong>记录时间：</strong><p class="li_p" id="papers_time_nopic"></p></li>
+				</ul>
+				
+			  </div>
+			  <div style=" float: right; height:  35px;width:  100%;padding:0 30px 0 0;">
+				<a class="btn btn-primary btn-sm" onclick="closeDetail_2()" data-modal="modal-2" style="float:right;margin-right:-25px;">关闭</a>
+			  </div>
+			</div>
+		</div>
+		<div class="md-overlay"></div>
+</div>
+	
+<div class="modal fade" id="model_loading" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+	<div style="display:table; width:100%; height:100%;">
+		<div style="vertical-align:middle; display:table-cell;">
+			<div class="modal-dialog modal-sm" style="width:710px;">
+					<div class="loader" >
+						<svg class="circular" viewBox="25 25 50 50">
+							<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+						</svg>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- START FOOTER SECTION -->
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="flog">About Us</div>
+				</div>
+				<div class="col-12-12 col-sm-4 col-md-4">
+					<span class="address">梦想工坊：<br>
+						E - m a i l：<br>
+						关于我们： <br>
+						产品特点：<br>
+						使用注意：<br>
+
+				</div>
+				<div class="col-12-12 col-sm-8 col-md-8">
+					<span class="phone">后海, 南山区, 深圳市<br>
+						306106986@qq.com<br>
+						 记忆保险柜由NCEPU团队倾心打造，团队已在此领域深耕2年，致力于通过区块领域让生活更美好。<br>
+						 本DAPP用于记录自己的曾经的记忆，将自己美好的瞬间永远保留在链上。<br>
+						 本DAPP依赖于<a style="color: #555;" target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>插件，如果没有，请安装<br>
+						</span>
+				</div>
+				<div class="col-md-12" style="margin-top:80px;">
+					<div class="copyright">
+						Copyright &copy; 2018.追梦者.
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+<!-- jQuery -->
+<script src="lib/assets/js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="lib/assets/js/bootstrap.min.js"></script>
+<script src="lib/assets/js/bootstrap-dropdownhover.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="lib/assets/js/jquery.easing.min.js"></script>
+<script src="lib/assets/js/jquery.fittext.js"></script>
+<script src="lib/assets/js/wow.min.js"></script>
+<script src="lib/assets/js/modernizr.js"></script>
+<!-- Modernizr -->
+<script src="lib/assets/js/main.js"></script>
+<!-- Resource jQuery -->
+<!--  countTo JavaScript  -->
+<script type="text/javascript" src="lib/assets/js/jquery.countTo.js"></script>
+<!-- owl carousel -->
+<script src="lib/assets/owl-carousel/owl.carousel.js"></script>
+<!--  Custom Theme JavaScript  -->
+<script src="lib/assets/js/custom.js"></script>
+<script src="lib/template.js"></script>
+<script src="lib/nebulas.js"></script>
+<script src="lib/nebPay.js"></script>
+<script src="index.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/modalEffects.js"></script>
+<script src="index_test.js"></script>
+
+<script id="papers_list_t" type="text/html">
+	<section class="comments">
+		<%if(list.length > 0 ){%>
+		<%for(var i = 0; i < list.length; i++) {%>
+			<article class="comment">
+				<a class="comment-img" href="#non">
+				<img src="img\\hr.png" alt="" width="100" height="100">
+				</a>
+				<div class="comment-body">
+					<table style="border:0px;" width="100%">
+						<tr>
+							<td width="20%" rowspan="3">
+								<div class="instructor-img" align="center">
+								<%if(list[i].sex=="男"){%>
+									<img id="staff_man" src="img\\staff.jpg" width="100" alt="instructor-img1">
+								<%}%>
+								<%if(list[i].sex=="女"){%>
+									<img id="staff_woman" src="img\\staff-woman.jpg" width="100" alt="instructor-img1">
+								</div>
+								<%}%>
+							</td>
+							<td width="50%">
+								<div class="text">
+									<p style="display:inline-block;width:50%">姓名：<%:=list[i].name%></p>
+								</div>
+							</td>
+							<td width="30%" rowspan="3" align="center">
+								<%var show_txt = "查看详情";var is_pay = false;if(list[i].is_need_price == true && list[i].is_own == false) { show_txt = "付费查看"; is_pay = true; }%>
+								<a href="javascript:;" class="md-trigger btn btn-primary btn-sm" data-modal="modal-1" onclick="showPapersDetail('<%:=list[i].key%>', <%:=is_pay%>, <%:=list[i].price_num%>, '<%:=list[i].from%>')"><%:=show_txt%></a>
+							</td>
+						</tr>
+						<tr>
+							<td >
+								<div class="text" >
+										<p>保险柜类型：<%:=list[i].type%></p><p>保险柜提示语：<%:=list[i].remarks%></p>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>	
+			</article>
+		<%}}%>
+	</section>
+</script>
+</body>
+
+</html>

@@ -195,7 +195,7 @@ function showPapersDetail(key, is_need_price, price_num, pay_to){
             "method": "neb_call"
         }, "*");
     } else {
-        $("#model_loading").modal("show");
+        
         key_pay = key;
         // 发送打赏流程
         payForShow(price_num, pay_to);
@@ -207,7 +207,8 @@ function funcIntervalPay() {
     nebPay.queryPayInfo(serialNumPay)   //search transaction result from server (result upload to server by app)
         .then(function (resp) {
             var respObject = JSON.parse(resp);
-
+            
+            console.log("jadonsun-" + resp);
             // 查询
             var req_args = [];
             req_args.push(key_pay);
@@ -252,9 +253,14 @@ function payForShow(price_num, pay_to) {
             desc: "pay for you to see"
         },
         //callback: cbSendTx
-        listener: null
+        listener: cbSendTx
     });
 
+    
+}
+
+function cbSendTx(resp) {
+    $("#model_loading").modal("show");
     intervalPay = setInterval(function () {
         funcIntervalPay();
     }, 15000);
